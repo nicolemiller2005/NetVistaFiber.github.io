@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetVista Fiber - Fast, Reliable Internet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header .logo {
+            color: #5514B4;
+            font-size: 1.5em;
+            font-weight: bold;
+            float: left;
+        }
+        nav {
+            float: right;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: right; /* Align menu items to the right */
+        }
+        nav ul li {
+            display: inline-block; /* Display menu items horizontally */
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            background: linear-gradient(45deg, #5514B4, #9747FF);
+            color: #fff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+        }
+        .btn, .btn-secondary {
+            display: inline-block;
+            background: #FF6B35;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn-secondary {
+            background: #5514B4;
+        }
+        .features, .packages {
+            padding: 3rem 0;
+            background: #f4f4f4;
+        }
+        .feature-box, .package-box {
+            background: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .page-header {
+            background: #5514B4;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .container {
+                width: 90%; /* Adjust container width for smaller screens */
+            }
+            header .logo {
+                float: none; /* Center logo on smaller screens */
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            nav {
+                float: none; /* Center navigation on smaller screens */
+                text-align: center;
+            }
+            nav ul {
+                display: flex; /* Use flexbox for horizontal layout */
+                justify-content: center; /* Center items horizontally */
+            }
+            nav ul li {
+                display: inline-block; /* Display menu items horizontally */
+                margin-left: 10px;
+            }
+            .hero h1 {
+                font-size: 2em; /* Decrease font size of hero headline */
+            }
+            .btn, .btn-secondary {
+                padding: 0.5rem 1rem; /* Decrease button padding */
+            }
+            .feature-box, .package-box {
+                padding: 1.5rem; /* Decrease padding for feature and package boxes */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">NetVista Fiber</div>
+            <nav>
+                <ul>
+                    <li><a href="#home" onclick="showContent('home')">Home</a></li>
+                    <li><a href="#broadband" onclick="showContent('broadband')">Broadband</a></li>
+                    <li><a href="#mobile" onclick="showContent('mobile')">Mobile</a></li>
+                    <li><a href="#support" onclick="showContent('support')">Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="home" class="content active">
+        <section class="hero">
+            <div class="container">
+                <h1>Experience Lightning-Fast Fiber Internet</h1>
+                <p>Unlimited data, unbeatable speeds, and unparalleled service with NetVista Fiber.</p>
+                <a href="#broadband" class="btn" onclick="showContent('broadband')">Check Availability</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="feature-box">
+                    <h2>Ultrafast Fiber</h2>
+                    <p>Download speeds up to 1 Gbps</p>
+                    <a href="#broadband" class="btn-secondary" onclick="showContent('broadband')">Learn More</a>
+                </div>
+                <div class="feature-box">
+                    <h2>Reliable Connection</h2>
+                    <p>99.9% uptime guarantee for all our fiber plans</p>
+                    <a href="#broadband" class="btn-secondary" onclick="showContent('broadband')">View Plans</a>
+                </div>
+                <div class="feature-box">
+                    <h2>Mobile Plans</h2>
+                    <p>5G ready SIM-only and phone contracts</p>
+                    <a href="#mobile" class="btn-secondary" onclick="showContent('mobile')">Explore Plans</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="broadband" class="content">
+        <section class="page-header">
+            <div class="container">
+                <h1>Our Fiber Broadband Packages</h1>
+            </div>
+        </section>
+
+        <section class="packages">
+            <div class="container">
+                <div class="package-box">
+                    <h2>Basic Fiber</h2>
+                    <p>Up to 100Mbps</p>
+                    <p>£24.99/month</p> <!-- Updated cheaper price -->
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+                <div class="package-box">
+                    <h2>Superfast Fiber</h2>
+                    <p>Up to 500Mbps</p>
+                    <p>£34.99/month</p> <!-- Updated cheaper price -->
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+                <div class="package-box">
+                    <h2>Ultrafast Fiber</h2>
+                    <p>Up to 1 Gbps</p>
+                    <p>£49.99/month</p> <!-- Updated cheaper price -->
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="mobile" class="content">
+        <section class="page-header">
+            <div class="container">
+                <h1>NetVista mobile SIM-Only Plans</h1>
+            </div>
+        </section>
+
+        <section class="packages">
+            <div class="container">
+                <div class="package-box">
+                    <h2>NetVista 5GB SIM Only</h2>
+                    <p>5GB data, unlimited calls & texts</p>
+                    <p>£5.99/month</p> <!-- Updated cheaper price -->
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+                <div class="package-box">
+                    <h2>NetVista 8GB SIM Only</h2>
+                    <p>8GB data, unlimited calls & texts</p>
+                    <p>£9.99/month</p> <!-- Updated cheaper price -->
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+                <div class="package-box">
+                    <h2>NetVista 25GB SIM Only</h2>
+                    <p>25GB data, unlimited calls & texts</p>
+                    <p>£15.99/month</p> <!-- Updated cheaper price -->
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+                <div class="package-box">
+                    <h2>NetVista 200GB SIM Only</h2>
+                    <p>200GB data, unlimited calls & texts</p>
+                    <p>£17.00/month</p> <!-- Updated price to £17.00 -->
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+                <div class="package-box">
+                    <h2>NetVista Unlimited SIM Only</h2>
+                    <p>Unlimited data, calls & texts</p>
+                    <p>£18.00/month</p> <!-- Updated cheaper price -->
+                    <a href="#" class="btn">Choose Plan</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="support" class="content">
+        <section class="page-header">
+            <div class="container">
+                <h1>Customer Support</h1>
+            </div>
+        </section>
+
+        <section class="support-content">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <p>Phone: 0800 123 4567</p>
+                <p>Email: support@netvistafiber.com</p>
+                <h2>FAQs</h2>
+                <ul>
+                    <li><a href="#">How to set up your fiber router</a></li>
+                    <li><a href="#">Troubleshooting connection issues</a></li>
+                    <li><a href="#">Billing queries</a></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 NetVista Fiber. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showContent(contentId) {
+            var contents = document.getElementsByClassName('content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+            document.getElementById(contentId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
