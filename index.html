@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NetVista Fiber offers fast and reliable fiber internet with various packages for both broadband and mobile plans.">
     <title>NetVista Fiber - Fast, Reliable Internet</title>
     <style>
         body {
@@ -12,17 +13,18 @@
             padding: 0;
             color: #333;
         }
+        header {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
         }
-        header {
-            background: #fff;
-            padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        header .logo {
+        .logo {
             color: #5514B4;
             font-size: 1.5em;
             font-weight: bold;
@@ -35,16 +37,60 @@
             list-style-type: none;
             margin: 0;
             padding: 0;
-            text-align: right; /* Align menu items to the right */
+            text-align: right;
         }
         nav ul li {
-            display: inline-block; /* Display menu items horizontally */
+            display: inline-block;
             margin-left: 20px;
         }
         nav ul li a {
             color: #333;
             text-decoration: none;
             font-weight: bold;
+        }
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            float: right;
+            padding: 1rem;
+        }
+        .hamburger-menu div {
+            width: 30px;
+            height: 3px;
+            background: #333;
+            margin: 6px 0;
+            transition: 0.3s;
+        }
+        .mobile-menu {
+            display: none;
+            background: #fff;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .mobile-menu.active {
+            display: block;
+        }
+        .mobile-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mobile-menu ul li {
+            border-bottom: 1px solid #eee;
+        }
+        .mobile-menu ul li a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .mobile-menu ul li a:hover {
+            background: #f4f4f4;
         }
         .hero {
             background: linear-gradient(45deg, #5514B4, #9747FF);
@@ -98,37 +144,81 @@
         .content.active {
             display: block;
         }
-
-        /* Media Queries for Responsive Design */
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        .package-box {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .package-box:hover {
+            transform: translateY(-5px);
+        }
+        .package-box h2 {
+            color: #5514B4;
+            margin-bottom: 1rem;
+        }
+        .package-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #FF6B35;
+            margin: 1rem 0;
+        }
+        .package-features {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+        .package-features li {
+            margin-bottom: 0.5rem;
+        }
+        .btn-choose-plan {
+            background: #5514B4;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn-choose-plan:hover {
+            background: #9747FF;
+        }
+        .phone-img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
         @media only screen and (max-width: 768px) {
             .container {
-                width: 90%; /* Adjust container width for smaller screens */
+                width: 90%;
             }
             header .logo {
-                float: none; /* Center logo on smaller screens */
+                float: none;
                 text-align: center;
                 margin-bottom: 20px;
             }
             nav {
-                float: none; /* Center navigation on smaller screens */
-                text-align: center;
+                display: none;
             }
-            nav ul {
-                display: flex; /* Use flexbox for horizontal layout */
-                justify-content: center; /* Center items horizontally */
-            }
-            nav ul li {
-                display: inline-block; /* Display menu items horizontally */
-                margin-left: 10px;
+            .hamburger-menu {
+                display: block;
             }
             .hero h1 {
-                font-size: 2em; /* Decrease font size of hero headline */
+                font-size: 2em;
             }
             .btn, .btn-secondary {
-                padding: 0.5rem 1rem; /* Decrease button padding */
+                padding: 0.5rem 1rem;
             }
             .feature-box, .package-box {
-                padding: 1.5rem; /* Decrease padding for feature and package boxes */
+                padding: 1.5rem;
             }
         }
     </style>
@@ -141,143 +231,225 @@
                 <ul>
                     <li><a href="#home" onclick="showContent('home')">Home</a></li>
                     <li><a href="#broadband" onclick="showContent('broadband')">Broadband</a></li>
-                    <li><a href="#mobile" onclick="showContent('mobile')">Mobile</a></li>
+                    <li><a href="#sim-only" onclick="showContent('sim-only')">SIM-Only Plans</a></li>
+                    <li><a href="#phone-contracts" onclick="showContent('phone-contracts')">Phone Contracts</a></li>
                     <li><a href="#support" onclick="showContent('support')">Support</a></li>
                 </ul>
             </nav>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="mobile-menu" id="mobile-menu">
+                <ul>
+                    <li><a href="#home" onclick="menuItemClick('home')">Home</a></li>
+                    <li><a href="#broadband" onclick="menuItemClick('broadband')">Broadband</a></li>
+                    <li><a href="#sim-only" onclick="menuItemClick('sim-only')">SIM-Only Plans</a></li>
+                    <li><a href="#phone-contracts" onclick="menuItemClick('phone-contracts')">Phone Contracts</a></li>
+                    <li><a href="#support" onclick="menuItemClick('support')">Support</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
-    <div id="home" class="content active">
-        <section class="hero">
-            <div class="container">
-                <h1>Experience Lightning-Fast Fiber Internet</h1>
-                <p>Unlimited data, unbeatable speeds, and unparalleled service with NetVista Fiber.</p>
-                <a href="#broadband" class="btn" onclick="showContent('broadband')">Check Availability</a>
-            </div>
-        </section>
+    <main>
+        <div id="home" class="content active">
+            <section class="hero">
+                <div class="container">
+                    <h1>Experience Lightning-Fast Fiber Internet</h1>
+                    <p>Unlimited data, unbeatable speeds, and unparalleled service with NetVista Fiber.</p>
+                    <a href="#broadband" class="btn" onclick="showContent('broadband')">Check Availability</a>
+                </div>
+            </section>
 
-        <section class="features">
-            <div class="container">
-                <div class="feature-box">
-                    <h2>Ultrafast Fiber</h2>
-                    <p>Download speeds up to 1 Gbps</p>
-                    <a href="#broadband" class="btn-secondary" onclick="showContent('broadband')">Learn More</a>
+            <section class="features">
+                <div class="container">
+                    <div class="feature-box">
+                        <h2>Flexible Packages</h2>
+                        <p>Find a broadband or mobile plan that fits your needs.</p>
+                        <a href="#broadband" class="btn-secondary" onclick="showContent('broadband')">Learn More</a>
+                    </div>
+                    <div class="feature-box">
+                        <h2>Reliable Connection</h2>
+                        <p>99.9% uptime guarantee for all our fiber plans</p>
+                        <a href="#broadband" class="btn-secondary" onclick="showContent('broadband')">View Plans</a>
+                    </div>
+                    <div class="feature-box">
+                        <h2>Mobile Plans</h2>
+                        <p>5G ready SIM-only and phone contracts</p>
+                        <a href="#sim-only" class="btn-secondary" onclick="showContent('sim-only')">Explore Plans</a>
+                    </div>
                 </div>
-                <div class="feature-box">
-                    <h2>Reliable Connection</h2>
-                    <p>99.9% uptime guarantee for all our fiber plans</p>
-                    <a href="#broadband" class="btn-secondary" onclick="showContent('broadband')">View Plans</a>
-                </div>
-                <div class="feature-box">
-                    <h2>Mobile Plans</h2>
-                    <p>5G ready SIM-only and phone contracts</p>
-                    <a href="#mobile" class="btn-secondary" onclick="showContent('mobile')">Explore Plans</a>
-                </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
 
-    <div id="broadband" class="content">
-        <section class="page-header">
-            <div class="container">
-                <h1>Our Fiber Broadband Packages</h1>
-            </div>
-        </section>
+        <div id="broadband" class="content">
+            <section class="page-header">
+                <div class="container">
+                    <h1>Our Fiber Broadband Packages</h1>
+                </div>
+            </section>
 
-        <section class="packages">
             <div class="container">
-                <div class="package-box">
-                    <h2>Basic Fiber</h2>
-                    <p>Up to 100Mbps</p>
-                    <p>£24.99/month</p> <!-- Updated cheaper price -->
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-                <div class="package-box">
-                    <h2>Superfast Fiber</h2>
-                    <p>Up to 500Mbps</p>
-                    <p>£34.99/month</p> <!-- Updated cheaper price -->
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-                <div class="package-box">
-                    <h2>Ultrafast Fiber</h2>
-                    <p>Up to 1 Gbps</p>
-                    <p>£49.99/month</p> <!-- Updated cheaper price -->
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="mobile" class="content">
-        <section class="page-header">
-            <div class="container">
-                <h1>NetVista mobile SIM-Only Plans</h1>
-            </div>
-        </section>
-
-        <section class="packages">
-            <div class="container">
-                <div class="package-box">
-                    <h2>NetVista 5GB SIM Only</h2>
-                    <p>5GB data, unlimited calls & texts</p>
-                    <p>£5.99/month</p> <!-- Updated cheaper price -->
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-                <div class="package-box">
-                    <h2>NetVista 8GB SIM Only</h2>
-                    <p>8GB data, unlimited calls & texts</p>
-                    <p>£9.99/month</p> <!-- Updated cheaper price -->
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-                <div class="package-box">
-                    <h2>NetVista 25GB SIM Only</h2>
-                    <p>25GB data, unlimited calls & texts</p>
-                    <p>£15.99/month</p> <!-- Updated cheaper price -->
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-                <div class="package-box">
-                    <h2>NetVista 200GB SIM Only</h2>
-                    <p>200GB data, unlimited calls & texts</p>
-                    <p>£17.00/month</p> <!-- Updated price to £17.00 -->
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-                <div class="package-box">
-                    <h2>NetVista Unlimited SIM Only</h2>
-                    <p>Unlimited data, calls & texts</p>
-                    <p>£18.00/month</p> <!-- Updated cheaper price -->
-                    <a href="#" class="btn">Choose Plan</a>
+                <div class="package-grid">
+                    <div class="package-box">
+                        <h2>Fiber Basic</h2>
+                        <ul class="package-features">
+                            <li>Up to 100Mbps download</li>
+                            <li>Up to 100Mbps upload</li>
+                            <li>Unlimited data</li>
+                        </ul>
+                        <div class="package-price">£24.99/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                    <div class="package-box">
+                        <h2>Fiber Superfast</h2>
+                        <ul class="package-features">
+                            <li>Up to 500Mbps download</li>
+                            <li>Up to 500Mbps upload</li>
+                            <li>Unlimited data</li>
+                        </ul>
+                        <div class="package-price">£39.99/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                    <div class="package-box">
+                        <h2>Fiber Max</h2>
+                        <ul class="package-features">
+                            <li>Up to 1Gbps download</li>
+                            <li>Up to 1Gbps upload</li>
+                            <li>Unlimited data</li>
+                        </ul>
+                        <div class="package-price">£59.99/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                    <div class="package-box">
+                        <h2>Fiber Ultra</h2>
+                        <ul class="package-features">
+                            <li>Up to 2Gbps download</li>
+                            <li>Up to 2Gbps upload</li>
+                            <li>Unlimited data</li>
+                        </ul>
+                        <div class="package-price">£89.99/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
 
-    <div id="support" class="content">
-        <section class="page-header">
+        <div id="sim-only" class="content">
+            <section class="page-header">
+                <div class="container">
+                    <h1>SIM-Only Plans</h1>
+                </div>
+            </section>
+
             <div class="container">
-                <h1>Customer Support</h1>
+                <div class="package-grid">
+                    <div class="package-box">
+                        <h2>Basic SIM</h2>
+                        <ul class="package-features">
+                            <li>5GB Data</li>
+                            <li>Unlimited Calls</li>
+                            <li>Unlimited Texts</li>
+                        </ul>
+                        <div class="package-price">£4/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                    <div class="package-box">
+                        <h2>Standard SIM</h2>
+                        <ul class="package-features">
+                            <li>50GB Data</li>
+                            <li>Unlimited Calls</li>
+                            <li>Unlimited Texts</li>
+                        </ul>
+                        <div class="package-price">£15/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                    <div class="package-box">
+                        <h2>Unlimited SIM</h2>
+                        <ul class="package-features">
+                            <li>Unlimited Data</li>
+                            <li>Unlimited Calls</li>
+                            <li>Unlimited Texts</li>
+                        </ul>
+                        <div class="package-price">£20/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section class="support-content">
+        <div id="phone-contracts" class="content">
+            <section class="page-header">
+                <div class="container">
+                    <h1>Phone Contracts</h1>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="package-grid">
+                    <div class="package-box">
+                        <img src="https://via.placeholder.com/100" alt="Phone 1" class="phone-img">
+                        <h2>Phone Model 1</h2>
+                        <ul class="package-features">
+                            <li>64GB Storage</li>
+                            <li>12MP Camera</li>
+                            <li>5.5" Display</li>
+                        </ul>
+                        <div class="package-price">£29.99/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                    <div class="package-box">
+                        <img src="https://via.placeholder.com/100" alt="Phone 2" class="phone-img">
+                        <h2>Phone Model 2</h2>
+                        <ul class="package-features">
+                            <li>128GB Storage</li>
+                            <li>16MP Camera</li>
+                            <li>6.1" Display</li>
+                        </ul>
+                        <div class="package-price">£39.99/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                    <div class="package-box">
+                        <img src="https://via.placeholder.com/100" alt="Phone 3" class="phone-img">
+                        <h2>Phone Model 3</h2>
+                        <ul class="package-features">
+                            <li>256GB Storage</li>
+                            <li>20MP Camera</li>
+                            <li>6.5" Display</li>
+                        </ul>
+                        <div class="package-price">£49.99/month</div>
+                        <a href="#" class="btn-choose-plan">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="support" class="content">
+            <section class="page-header">
+                <div class="container">
+                    <h1>Support</h1>
+                </div>
+            </section>
+
             <div class="container">
                 <h2>Contact Us</h2>
-                <p>Phone: 0800 123 4567</p>
                 <p>Email: support@netvistafiber.com</p>
-                <h2>FAQs</h2>
+                <p>Phone: 0800 123 4567</p>
+
+                <h2>Frequently Asked Questions</h2>
                 <ul>
-                    <li><a href="#">How to set up your fiber router</a></li>
-                    <li><a href="#">Troubleshooting connection issues</a></li>
-                    <li><a href="#">Billing queries</a></li>
+                    <li><strong>How do I set up my fiber broadband?</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li><strong>Can I upgrade my mobile plan?</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li><strong>What is your cancellation policy?</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
                 </ul>
             </div>
-        </section>
-    </div>
+        </div>
+    </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 NetVista Fiber. All rights reserved.</p>
-        </div>
+        <p>&copy; 2024 NetVista Fiber. All rights reserved.</p>
     </footer>
 
     <script>
@@ -285,8 +457,31 @@
             var contents = document.getElementsByClassName('content');
             for (var i = 0; i < contents.length; i++) {
                 contents[i].classList.remove('active');
+                contents[i].setAttribute('aria-hidden', 'true');
             }
             document.getElementById(contentId).classList.add('active');
+            document.getElementById(contentId).setAttribute('aria-hidden', 'false');
+        }
+
+        function toggleMenu() {
+            var mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('active');
+            document.addEventListener('click', outsideClickListener);
+        }
+
+        function outsideClickListener(event) {
+            var mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.contains(event.target) && !document.querySelector('.hamburger-menu').contains(event.target)) {
+                mobileMenu.classList.remove('active');
+                document.removeEventListener('click', outsideClickListener);
+            }
+        }
+
+        function menuItemClick(contentId) {
+            showContent(contentId);
+            var mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.remove('active');
+            document.removeEventListener('click', outsideClickListener);
         }
     </script>
 </body>
